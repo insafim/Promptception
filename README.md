@@ -1,2 +1,2 @@
-# Promptception: How Sensitive are VLLMsto Texual Prompts in MCQA?
+# Promptception: How Sensitive are VLLMs to Texual Prompts in MCQA?
 VLLMs
