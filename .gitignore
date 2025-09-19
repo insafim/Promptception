@@ -1,2 +1,11 @@
 .DS_store
 .idea
+static/videos/
+*.mp4
+*.webm
+*.mov
+*.gif
+*.jpg
+*.jpeg
+*.png
+*.tiff
