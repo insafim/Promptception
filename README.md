@@ -1,13 +1,16 @@
-# <img src="Assets/Promptception-Logo.png" height="40"> Promptception: How Sensitive Are Large Multimodal Models to Prompts? [EMNLP 2025 🔥]
+# Nerfies
 
-<p align="center">
-    <img src="https://i.imgur.com/waxVImv.png" alt="Image">
-</p>
+This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
 
-> #### [Mohamed Insaf Ismithdeen](https://scholar.google.com/citations?user=--fYSbUAAAAJ&hl=en), [Muhammad Uzair Khattak](https://scholar.google.com/citations?user=M6fFL4gAAAAJ&hl=en), [Salman Khan](https://salman-h-khan.github.io/)
+If you find Nerfies useful for your work please cite:
+```
+@article{park2021nerfies
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}
+```
 
-#### Mohamed bin Zayed University of AI, Swiss Federal Institute of Technology Lausanne (EPFL), Australian National University
-
-[![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://www.arxiv.org/abs/2509.03986)
-
-Official GitHub repository for  `Promptception: How Sensitive Are Large Multimodal Models to Prompts?`.
+# Website License
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
