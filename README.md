@@ -12,3 +12,9 @@
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://www.arxiv.org/abs/2509.03986)
 
 Official GitHub repository for  `Promptception: How Sensitive Are Large Multimodal Models to Prompts?`.
+
+## 📢 Latest Updates
+
+- **Feb-2025:** Promptception is accepted at EMNLP 2025 (Findings)! 🎊🎊
+
+---
