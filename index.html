@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="description"
@@ -8,171 +9,280 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Promptception: How Sensitive Are Large Multimodal Models to Prompts?</title>
 
-  <!-- Fonts & CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/logo.png">
+  <link rel="icon" href="./static/images/Promptception-Logo.png">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- JS -->
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+  <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.27.0/gradio.js"></script>
 </head>
+
+
+<style>
+    .section {
+    margin-bottom: -30px; /* Adjust this value as needed to reduce the space */
+  }
+  .expandable-card .card-text-container {
+    max-height: 200px;
+    overflow-y: hidden;
+    position: relative;
+  }
+
+  .expandable-card.expanded .card-text-container {
+    max-height: none;
+  }
+
+  .expand-btn {
+    position: relative;
+    display: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* margin-top: -20px; */
+    /* justify-content: center; */
+    color: #510c75;
+    border-color: transparent;
+  }
+
+  .expand-btn:hover {
+    background-color: rgba(200, 200, 200, 0.8);
+    text-decoration: none;
+    border-color: transparent;
+    color: #510c75;
+  }
+
+  .expand-btn:focus {
+    outline: none;
+    text-decoration: none;
+  }
+
+  .expandable-card:not(.expanded) .card-text-container:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 1));
+  }
+
+  .expandable-card:not(.expanded) .expand-btn {
+    margin-top: -40px;
+  }
+
+  .card-body {
+    padding-bottom: 5px;
+  }
+
+  .vertical-flex-layout {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .figure-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .adjustable-font-size {
+    font-size: calc(0.5rem + 2vw);
+  }
+
+  .chat-history {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* overflow-x: hidden; */
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  #gradio pre {
+    background-color: transparent;
+  }
+</style>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://github.com/insafim/Promptception">
-        <span class="icon"><i class="fab fa-github"></i></span>
-        <span>GitHub</span>
-      </a>
-    </div>
-  </div>
-</nav>
 
-<!-- Hero section -->
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <img src="./static/images/logo.png" alt="Promptception Logo" width="120">
-          <h1 class="title is-1 publication-title">Promptception:<br> How Sensitive Are Large Multimodal Models to Prompts?</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Insaf Ismath<sup>1</sup></span>
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>MBZUAI</span>
-          </div>
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2509.12345"  <!-- replace with real arXiv ID -->
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2509.12345.pdf"  <!-- replace with real PDF link -->
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://github.com/insafim/Promptception"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code</span>
-                </a>
-              </span>
+            <img src="static/images/logo.png" alt="Promptception" width="100">
+            <h1 class="title is-1 publication-title">Promptception: How Sensitive Are Large Multimodal Models to Prompts? <br> <span style="color: red; font-size: 0.7em;">[EMNLP 2025]</span> </h1>
+            <div class="is-size-5 publication-authors">
+              <!-- First Group of 3 Authors -->
+              <div class="author-group">
+                  <span class="author-block">
+                      <a href="https://scholar.google.com/citations?user=--fYSbUAAAAJ&hl=en" style="color:#f68946;font-weight:normal;">Mohamed Insaf Ismithdeen,
+                  </span>
+                  <span class="author-block">
+                      <a href="https://scholar.google.com/citations?user=M6fFL4gAAAAJ&hl=en" style="color:#008AD7;font-weight:normal;">Muhammad Uzair Khattak,
+                  </span>
+              </div>
+
+              <!-- Second Group of 2 Authors -->
+              <div class="author-group">
+                  <span class="author-block">
+                      <a href="https://salman-h-khan.github.io/" style="color:#f68946;font-weight:normal;">Salman Khan</a>,
+                  </span>
+              </div>
+          </div>
+            <div class="is-size-5 publication-authors">
+              Mohamed bin Zayed University of Artificial Intelligence,<br>
+            </div>
+            <div class="is-size-5 publication-authors">
+            Swiss Federal Institute of Technology Lausanne (EPFL), Australian National University<br>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://www.arxiv.org/abs/2509.03986" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/insafim/Promptception" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
+
+<!-- Teaser-->
+<section class="section custom-section-teaser">
+  <div class="columns is-centered has-text-centered">
+      <div class="column is-half" style="display: flex; align-items: flex-start; justify-content: center;">
+          <figure style="text-align: center;">
+            <!-- <figcaption> -->
+              <!-- <b>VideoGLaMM</b> is the first video-based Large Multimodal Model (LMM) with pixel-level grounding capabilities 🔥🔥🔥 -->
+          <!-- </figcaption>   -->
+            <img id="teaser" width="100%" src="static/images/sunburst.png">
+              
+          </figure>
+      </div>
   </div>
 </section>
+<!--Teaser-->
 
-<!-- Abstract -->
-<section class="section">
+  <!-- Abstract -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h4 class="subtitle has-text-justified">
+          Despite the success of Large Multimodal Models (LMMs) in recent years, prompt design for LMMs in Multiple-Choice Question Answering (MCQA) remains poorly understood. Ambiguity and Probabilistic Prompts We show that even minor variations in prompt phrasing and structure can lead to accuracy deviations of up to 15% for certain prompts and models. This variability poses a challenge for transparent and fair LMM evaluation, as models often report their best-case performance using carefully selected prompts. To address this, we introduce <b>Promptception</b>, a systematic framework for evaluating prompt sensitivity in LMMs. It consists of 61 prompt types, spanning 15 categories and 6 supercategories, each targeting specific aspects of prompt formulation, and is used to evaluate 10 LMMs ranging from lightweight open-source models to GPT-4o and Gemini 1.5 Pro, across 3 MCQA benchmarks: MMStar, MMMU-Pro, Roleplay Scenarios Choice Formatting and Presentation Structured Formatting Figure 1: Categorization of prompts proposed in our Promptception framework. It consists of 61 prompt types, spanning 15 categories (e.g. Answer Handling, Penalty-Based Prompts, Poor Linguistic Formatting) and 6 supercategories (e.g. TaREMOVED_KEYSpecific Instructions, MVBench. Our findings reveal that proprietary Focus-Driven Prompts Choice Formatting and Presentation), providing a commodels exhibit greater sensitivity to prompt phrasing, reflecting tighter alignment with instruction semantics, while open-source models are steadier but struggle with nuanced and complex phrasing. Based on this analysis, we propose Prompting Principles tailored to proprietary and open-source LMMs, enabling more robust and fair model evaluation.
+        </h4>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section"  style="background-color:#efeff081">
   <div class="container is-max-desktop">
+    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">🔥Highlights</h2>
         <div class="content has-text-justified">
-          <p>
-            Large Multimodal Models (LMMs) are increasingly evaluated via prompt-based multiple-choice question answering. 
-            We show that even minor variations in prompt phrasing can shift accuracy by up to 15%, raising concerns about fairness and reproducibility. 
-            Promptception introduces a systematic framework to measure this sensitivity across 61 prompt types and 10 models on 3 benchmarks (MMStar, MMMU-Pro, MVBench).
-          </p>
-          <p>
-            Our findings reveal that proprietary models are more sensitive to prompt wording, reflecting tighter alignment with instructions. 
-            We provide the first large-scale analysis of prompt sensitivity in LMMs and release our evaluation framework to support more robust benchmarking practices.
-          </p>
+            The key contributions of this work are: 
+
+          <ol type="1">
+            <li><b>Comprehensive Prompt Sensitivity Analysis:</b> We present the most extensive study to date on the impact of prompt variations across diverse multimodal benchmarks and LMM architectures. To facilitate this study, we introduce Promptception, a systematic evaluation framework comprising of 61 prompt types, organized into 15 categories and 6 supercategories, each designed to probe specific aspects of prompt formulation in LMMs.</li><br>
+            <li><b>Evaluation Across Models, Modalities, and Benchmarks:</b> We assess prompt sensitivity across a diverse set of model sizes and architectures, including both open-source and proprietary LMMs. Our analysis spans multiple modalities and benchmarks; MMStar (single image), MMMU-Pro (multi-image), and MVBench (video) and we further evaluate sensitivity across various question dimensions within these benchmarks to ensure a comprehensive understanding.</li><br>
+            <li><b>Best Practices for Prompting:</b> We identify key trends in prompting and propose Prompting Principles for effective and consistent evaluation of LMMs.</li><br>
+          </ol>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Results Section -->
+
+
+<!--Model Arch-->
 <section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Results</h2>
-
-    <div class="content has-text-centered">
-      <img src="./static/images/open_source.png"
-           alt="Average Prompt Performance for Open-Source Models"
-           width="80%">
-      <p class="caption">Average Prompt Performance for Open-Source Models</p>
-    </div>
-    <br>
-
-    <div class="content has-text-centered">
-      <img src="./static/images/proprietary.png"
-           alt="Average Prompt Performance for Proprietary Models"
-           width="80%">
-      <p class="caption">Average Prompt Performance for Proprietary Models</p>
-    </div>
-    <br>
-
-    <div class="content has-text-centered">
-      <img src="./static/images/fig2_comb.png"
-           alt="Combined Prompt Sensitivity Analysis"
-           width="80%">
-      <p class="caption">Combined Prompt Sensitivity Analysis</p>
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img src="static/images/fig2_comb.png" alt="VideoGLaMM_face" width="40" style="vertical-align: bottom;"> Sensitivity of state-of-the-art LMMs to prompt variations.</h2>
     </div>
   </div>
-</section>
 
-<!-- BibTeX -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{ismath2025promptception,
-  title     = {Promptception: How Sensitive Are Large Multimodal Models to Prompts?},
-  author    = {Ismath, Insaf},
-  booktitle = {Findings of EMNLP},
-  year      = {2025},
-}</code></pre>
-  </div>
-</section>
+<style>
+  #BibTeX {
+    margin-bottom: -80px; /* Adjust the negative margin as needed */
+  }
+  #Acknowledgement {
+    margin-top: -80px; /* Adjust the negative margin as needed */
+  }
+</style>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="https://arxiv.org/pdf/2509.12345.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/insafim/Promptception">
-        <i class="fab fa-github"></i>
-      </a>
+<!-- BibTex -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+@misc{ismithdeen2025promptceptionsensitivelargemultimodal,
+      title={Promptception: How Sensitive Are Large Multimodal Models to Prompts?}, 
+      author={Mohamed Insaf Ismithdeen and Muhammad Uzair Khattak and Salman Khan},
+      year={2025},
+      eprint={2509.03986},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.03986}, 
+}
+  </code></pre>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            Based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website template</a>.  
-          </p>
-        </div>
-      </div>
+  </section>
+ 
+  <!-- Acknowledgement -->
+  <section class="section" id="Acknowledgement">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Acknowledgement</h2>
+      <p>
+        This website is adapted from <a
+        href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
     </div>
-  </div>
-</footer>
+  </section>
 
 </body>
+
 </html>
+
+<!-- <div style="text-align: center;">
+  <a href="https://www.ival-mbzuai.com" target="_blank">
+    <img src="images/logos/IVAL_logo.png" width="200" height="100" alt="IVAL Logo">
+  </a>
+  <a href="https://github.com/mbzuai-oryx" target="_blank">
+    <img src="images/logos/Oryx_logo.png" width="100" height="100" alt="Oryx Logo">
+  </a>
+  <a href="https://mbzuai.ac.ae" target="_blank">
+    <img src="images/logos/MBZUAI_logo.png" width="360" height="85" alt="MBZUAI Logo">
+  </a>
+</div> -->
