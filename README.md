@@ -15,6 +15,6 @@ Official GitHub repository for  `Promptception: How Sensitive Are Large Multimod
 
 ## 📢 Latest Updates
 
-- **Feb-2025:** Promptception is accepted at EMNLP 2025 (Findings)! 🎊🎊
-
+- **Aug-2025:** Promptception is accepted at EMNLP 2025 (Findings)! 🎊🎊  
+- **Nov-2025:** Mohamed Insaf Ismithdeen will be presenting *Promptception* as a **poster** at EMNLP 2025 (Findings Session 3, Nov 7). 📝✨
 ---
