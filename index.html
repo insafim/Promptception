@@ -262,6 +262,184 @@
 </section>
 <!-- Model Arch -->
 
+
+<!-- Prompting Principles -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Prompting Principles</h2>
+    <p class="has-text-centered">
+      Derived from our comprehensive prompt sensitivity analysis (Section 4) to improve stability and accuracy in MCQA tasks.
+    </p>
+    <br/>
+
+    <div style="overflow-x:auto;">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th style="text-align:center; width:3%;">#</th>
+            <th style="text-align:center;">Open-Source Models</th>
+            <th style="text-align:center;">Proprietary Models</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- Row 1 -->
+          <tr>
+            <td style="text-align:center;">1</td>
+            <td>
+              <b>Concise prompts yield better performance</b>: Short and direct prompts improve accuracy. 
+              <i>"Answer with the option letter from the given choices directly."</i> <span style="color:blue;">(1.1)</span>
+              <hr>
+              <b>Overly short or vague prompts reduce accuracy</b>: Too brief and unclear. 
+              <i>"Best Choice: $LETTER"</i> <span style="color:blue;">(12.3)</span>
+              <hr>
+              <b>Detailed prompts are ineffective</b>: Long or highly descriptive prompts do not help. 
+              <span style="color:blue;">(Category 5, etc.)</span>
+            </td>
+            <td>
+              <b>Prompt length and detail have minimal impact</b>: Stable across lengths. <br><hr>
+              <b>Restricting responses to only a letter is detrimental</b>: Suppresses reasoning and reduces accuracy. 
+              <span style="color:blue;">(12.2)</span>
+            </td>
+          </tr>
+
+          <!-- Row 2 -->
+          <tr>
+            <td style="text-align:center;">2</td>
+            <td>
+              <b>Complex or structured formatting decreases accuracy</b>: JSON, YAML, Markdown harm results. 
+              <span style="color:blue;">(2.3–2.9)</span>
+              <hr>
+              <b>Clear separation of option letters enhances clarity</b>: e.g., 
+              <i>(A) choice1 <br>(B) choice2 <br>(C) choice3 <br>(D) choice4</i> 
+              <span style="color:blue;">(1.2)</span>
+              <hr>
+              <b>Explicit labeling of Q&A is beneficial</b>: 
+              <i>“Question: … Options: … Answer …”</i> <span style="color:blue;">(2.2)</span>
+              <hr>
+              <b>Placing Q&A at the end helps</b>. <span style="color:blue;">(3.1)</span>
+            </td>
+            <td>
+              <b>Complex formatting does not impair accuracy</b>: Proprietary models handle JSON/Markdown/YAML fine. 
+              <span style="color:blue;">(Category 2)</span>
+            </td>
+          </tr>
+
+          <!-- Row 3 -->
+          <tr>
+            <td style="text-align:center;">3</td>
+            <td>
+              <b>Poor linguistic formatting hinders performance</b>: ALL CAPS, grammar issues, misspellings reduce accuracy. 
+              <span style="color:blue;">(Category 4)</span>
+            </td>
+            <td>
+              <b>Poor linguistic formatting does not affect performance</b>: Proprietary models are robust to casing/typos. 
+              <span style="color:blue;">(Category 4)</span>
+            </td>
+          </tr>
+
+          <!-- Row 4 -->
+          <tr>
+            <td style="text-align:center;">4</td>
+            <td>
+              <b>Chain-of-Thought reasoning is ineffective</b>: Step-by-step reasoning does not improve accuracy. 
+              <span style="color:blue;">(Category 6)</span>
+            </td>
+            <td>
+              <b>Allowing reasoning improves accuracy</b>: Letting model “think” yields higher accuracy. 
+              <span style="color:blue;">(Categories 6 & 12.5)</span>
+            </td>
+          </tr>
+
+          <!-- Row 5 -->
+          <tr>
+            <td style="text-align:center;">5</td>
+            <td>
+              <b>Penalties, incentives, or competitive framing are ineffective</b>: Rewards/penalties add ambiguity. 
+              <span style="color:blue;">(Categories 13–15)</span>
+            </td>
+            <td>
+              <b>Penalties or incentives improve performance</b>: Contextual framing helps. 
+              <span style="color:blue;">(Categories 13 & 14)</span>
+              <hr>
+              <b>Competitive framing degrades performance</b>: Game-like prompts reduce accuracy. 
+              <span style="color:blue;">(Category 15)</span>
+            </td>
+          </tr>
+
+          <!-- Row 6 -->
+          <tr>
+            <td style="text-align:center;">6</td>
+            <td>
+              <b>Specifying personas/audiences is ineffective</b>: No performance gain. 
+              <span style="color:blue;">(Categories 8 & 9)</span>
+            </td>
+            <td>
+              <b>Persona-based prompting has mixed effects</b>: Positive neutral, negative harmful. 
+              <span style="color:blue;">(Category 9)</span>
+            </td>
+          </tr>
+
+          <!-- Row 7 -->
+          <tr>
+            <td style="text-align:center;">7</td>
+            <td>
+              <b>Overemphasis on answer format is unhelpful</b>: Excessive formatting instructions degrade accuracy. 
+              <span style="color:blue;">(Categories 11.3 & 12)</span>
+            </td>
+            <td>
+              <b>Answer format matters</b>: Proprietary models are sensitive to requested format. 
+              <span style="color:blue;">(Categories 11.3 & 12)</span>
+            </td>
+          </tr>
+
+          <!-- Row 8 -->
+          <tr>
+            <td style="text-align:center;">8</td>
+            <td>
+              <b>Temporal reasoning enhances video comprehension</b>: Improves accuracy. 
+              <span style="color:blue;">(11.4, 11.5)</span>
+            </td>
+            <td>
+              <b>Temporal reasoning enhances video comprehension</b>: Same benefit for proprietary models. 
+              <span style="color:blue;">(11.4 & 11.5)</span>
+            </td>
+          </tr>
+
+          <!-- Row 9 -->
+          <tr>
+            <td style="text-align:center;">9</td>
+            <td>
+              <b>Image-focused prompting helps</b>: Direct attention to image improves accuracy. 
+              <span style="color:blue;">(11.1)</span>
+            </td>
+            <td>
+              <b>Focusing only on image/question hinders</b>: Explicit restriction worsens performance. 
+              <span style="color:blue;">(11.1 & 11.2)</span>
+            </td>
+          </tr>
+
+          <!-- Row 10 -->
+          <tr>
+            <td style="text-align:center;">10</td>
+            <td>
+              <b>Answer leakage degrades performance</b>: Unintended hints reduce accuracy. 
+              <span style="color:blue;">(Category 7)</span>
+            </td>
+            <td>
+              <b>Asking to avoid bias/stereotypes helps</b>: Improves responses. 
+              <span style="color:blue;">(Category 10)</span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
 <style>
   #BibTeX {
     margin-bottom: -80px; /* Adjust the negative margin as needed */
