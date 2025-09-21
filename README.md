@@ -35,7 +35,7 @@ Despite the success of Large Multimodal Models (LMMs) in recent years, prompt de
 4. 
 
 ## Citation 📜
-
+If you are using Promptception in your research or applications, please cite using this BibTeX:
 ```bibtex
 @misc{ismithdeen2025promptceptionsensitivelargemultimodal,
       title={Promptception: How Sensitive Are Large Multimodal Models to Prompts?}, 
