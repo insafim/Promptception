@@ -47,3 +47,10 @@ Despite the success of Large Multimodal Models (LMMs) in recent years, prompt de
       url={https://arxiv.org/abs/2509.03986}, 
 }
 ```
+
+## License :scroll:
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+
+Looking forward to your feedback, contributions, and stars! :star2:
+Please raise any issues or questions [here](https://github.com/insafim/Promptception/issues). 
