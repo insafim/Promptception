@@ -42,6 +42,7 @@ Download the datasets (**MMMU-Pro**, **MMStar**, and **MVBench**) [using this li
 
 After downloading and unzipping, arrange them as follows:
 
+```
 Datasets/
 |–– MMMU-Pro/
 |   |–– Images-standard/
@@ -57,6 +58,7 @@ Datasets/
 |   |–– mvbench_videos/
 |   |–– mvbench.json
 |   |–– mvbench_100.json
+```
 
 ## Citation 📜
 If you are using Promptception in your research or applications, please cite using this BibTeX:
