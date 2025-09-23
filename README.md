@@ -34,6 +34,30 @@ Despite the success of Large Multimodal Models (LMMs) in recent years, prompt de
 2. **Evaluation Across Models, Modalities, and Benchmarks:** We assess prompt sensitivity across a diverse set of model sizes and architectures, including both open-source and proprietary LMMs. Our analysis spans multiple modalities and benchmarks; MMStar (single image), MMMU-Pro (multi-image), and MVBench (video) and we further evaluate sensitivity across various question dimensions within these benchmarks to ensure a comprehensive understanding.
 3. **Best Practices for Prompting:** We identify key trends in prompting and propose Prompting Principles for effective and consistent evaluation of LMMs.
 
+## Getting started with Promptception Datasets
+
+### Downloading and Setting Up the Datasets
+
+Download the datasets (**MMMU-Pro**, **MMStar**, and **MVBench**) [using this link (zipped)](https://mbzuaiac-my.sharepoint.com/:f:/g/personal/mohamed_ismithdeen_mbzuai_ac_ae/EhGMCrVvuDpMlFftWqRvs1UBU-Sb1wSv_fhYd9IIK8hUCg?e=BiY86a).
+
+After downloading and unzipping, arrange them as follows:
+
+Datasets/
+|–– MMMU-Pro/
+|   |–– Images-standard/
+|   |–– Images-vision/
+|   |–– MMMU-Pro_standard_4options_sub.json
+|   |–– MMMU-Pro_standard_10options.json
+|   |–– MMMU-Pro_Vision_no-options.json
+|
+|–– MMStar/
+|   |–– MMStar.json
+|
+|–– MVBench/
+|   |–– mvbench_videos/
+|   |–– mvbench.json
+|   |–– mvbench_100.json
+
 ## Citation 📜
 If you are using Promptception in your research or applications, please cite using this BibTeX:
 ```bibtex
