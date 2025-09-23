@@ -47,7 +47,7 @@ Datasets/
 |–– MMMU-Pro/
 |   |–– Images-standard/
 |   |–– Images-vision/
-|   |–– MMMU-Pro_standard_4options_sub.json
+|   |–– MMMU-Pro_standard_4options.json
 |   |–– MMMU-Pro_standard_10options.json
 |   |–– MMMU-Pro_Vision_no-options.json
 |
