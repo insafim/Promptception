@@ -34,7 +34,7 @@ Despite the success of Large Multimodal Models (LMMs) in recent years, prompt de
 2. **Evaluation Across Models, Modalities, and Benchmarks:** We assess prompt sensitivity across a diverse set of model sizes and architectures, including both open-source and proprietary LMMs. Our analysis spans multiple modalities and benchmarks; MMStar (single image), MMMU-Pro (multi-image), and MVBench (video) and we further evaluate sensitivity across various question dimensions within these benchmarks to ensure a comprehensive understanding.
 3. **Best Practices for Prompting:** We identify key trends in prompting and propose Prompting Principles for effective and consistent evaluation of LMMs.
 
-## Getting started with Promptception Datasets
+## Getting started with Promptception
 
 ### Downloading and Setting Up the Datasets
 
