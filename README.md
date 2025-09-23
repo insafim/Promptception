@@ -83,13 +83,13 @@ cd Promptception
 
 We used Python 3.10 with CUDA-enabled PyTorch for GPU inference.
 
-a) Create and activate a new environment:
+    a) Create and activate a new environment:
 
 ```bash
 conda create --name promptception python=3.10
 conda activate promptception
 ```
-b) Install all required dependencies (for both open-source Hugging Face models and closed-source APIs):
+    b) Install all required dependencies (for both open-source Hugging Face models and closed-source APIs):
 
 ```bash
 pip install pillow==10.1.0 \
