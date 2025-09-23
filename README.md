@@ -80,28 +80,27 @@ git clone https://github.com/insafim/Promptception.git
 cd Promptception
 ```
 3. Environment setup
+   We used Python 3.10 with CUDA-enabled PyTorch for GPU inference.
 
-We used Python 3.10 with CUDA-enabled PyTorch for GPU inference.
+   a) Create and activate a new environment:
 
-    a) Create and activate a new environment:
-
-```bash
-conda create --name promptception python=3.10
-conda activate promptception
-```
+    ```bash
+    conda create --name promptception python=3.10
+    conda activate promptception
+    ```
     b) Install all required dependencies (for both open-source Hugging Face models and closed-source APIs):
 
-```bash
-pip install pillow==10.1.0 \
-            torch==2.1.2 \
-            torchvision==0.16.2 \
-            transformers==4.40.0 \
-            sentencepiece==0.1.99 \
-            decord \
-            openai \
-            opencv-python \
-            google-generativeai
-```
+    ```bash
+    pip install pillow==10.1.0 \
+                torch==2.1.2 \
+                torchvision==0.16.2 \
+                transformers==4.40.0 \
+                sentencepiece==0.1.99 \
+                decord \
+                openai \
+                opencv-python \
+                google-generativeai
+    ```
 
 ## Citation 📜
 If you are using Promptception in your research or applications, please cite using this BibTeX:
