@@ -59,6 +59,41 @@ Datasets/
 |   |–– mvbench.json
 |   |–– mvbench_100.json
 ```
+### Prompts
+
+We have included the prompt files .yaml in the Prompts directory. Use the correct file depending on the modality and closed-source/ proprierty (GPT4o, Gemini 1.5 Pro)
+
+## :hammer_and_wrench: Setup and Usage
+To replicate our experiments and run inference with Hugging Face Transformers on NVIDIA GPUs, follow the steps below.  
+Our setup was tested on **Python 3.10** with CUDA-enabled PyTorch.
+
+1. 1. Clone the repository:
+```bash
+git clone https://github.com/insafim/Promptception.git
+```
+2. Change directory:
+```bash
+cd Promptception
+```
+### Closed-Source LMMs Setup and Usage
+To replicate our experiments and run inference with Hugging Face Transformers on NVIDIA GPUs, follow the steps below.  
+Our setup was tested on **Python 3.10** with CUDA-enabled PyTorch.
+
+Install Libraries:
+pip install pillow==10.1.0 \
+            torch==2.1.2 \
+            torchvision==0.16.2 \
+            transformers==4.40.0 \
+            sentencepiece==0.1.99 \
+            decord
+
+### Closed-Source LMMs Setup and Usage
+We used `python=3.10` in our experiments involving closed-source LMMs like GPT-4o and Gemini-1.5 Pro. 
+
+Install Libraries:
+```bash
+pip install openai opencv-python python-dotenv tqdm google-generativeai pillow
+```
 
 ## Citation 📜
 If you are using Promptception in your research or applications, please cite using this BibTeX:
