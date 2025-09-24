@@ -1,5 +1,5 @@
 X skipped
-Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Llama/mmstar_intern-vl-8B_7.1_updated.json
+Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Choice/mmstar_intern-vl-8B_7.1_updated.json
 =====================================
 Overall Accuracy
 =====================================

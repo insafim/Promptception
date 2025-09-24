@@ -49,7 +49,7 @@ for VERSION in "${VERSIONS[@]}"; do
     # OUTPUT_PATH="Eval_Output/MVBench/MVBench_Intern-VL-38B/eval_mvbench_intern-vl-38B_${VERSION}-100.txt"
 
     # RESULTS_PATH="Results/MVBench/MVBench_Intern-VL-38B/mvbench_intern-vl-38B_${VERSION}.json"
-    # RESULTS_PATH="Results/MVBench/MVBench_Intern-VL-38B/Extract_Llama/mvbench_intern-vl-38B_${VERSION}_updated.json"
+    # RESULTS_PATH="Results/MVBench/MVBench_Intern-VL-38B/Extract_Choice/mvbench_intern-vl-38B_${VERSION}_updated.json"
     # OUTPUT_PATH="Eval_Output/MVBench/MVBench_Intern-VL-38B/eval_mvbench_intern-vl-38B_${VERSION}-elizabeth.txt"
 
 
@@ -74,7 +74,7 @@ for VERSION in "${VERSIONS[@]}"; do
     # OUTPUT_PATH="Eval_Output/MVBench/MVBench_Gemini1.5-Pro/eval_mvbench_gemini1.5-pro_${VERSION}.txt"
 
     # RESULTS_PATH="Results/MVBench/MVBench_GPT4o/mvbench_gpt4o_${VERSION}.json"
-    # RESULTS_PATH="Results/MVBench/MVBench_GPT4o/Extract_Llama/mvbench_gpt4o_${VERSION}_updated.json"
+    # RESULTS_PATH="Results/MVBench/MVBench_GPT4o/Extract_Choice/mvbench_gpt4o_${VERSION}_updated.json"
     
     # OUTPUT_PATH="Eval_Output/MVBench/MVBench_GPT4o/eval_mvbench_gpt4o_${VERSION}-2.txt"
 

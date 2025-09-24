@@ -193,7 +193,7 @@ def eval_results(
         results = json.load(f)
 
     base_directory = os.path.dirname(results_path)
-    save_dir = os.path.join(base_directory, "Extract_Llama")
+    save_dir = os.path.join(base_directory, "Extract_Choice")
     os.makedirs(save_dir, exist_ok=True)
     updated_results_path = os.path.join(save_dir, os.path.basename(results_path).replace('.json', '_updated.json'))
 

@@ -1,4 +1,4 @@
-Updated results saved to Results/MMMU-Pro/MMMU-Pro_Llava-OV-7B/Extract_Llama/mmmu-pro_llava-ov-7B_s4_1.1_updated.json
+Updated results saved to Results/MMMU-Pro/MMMU-Pro_Llava-OV-7B/Extract_Choice/mmmu-pro_llava-ov-7B_s4_1.1_updated.json
 =====================================
 Evaluation Results
 =====================================

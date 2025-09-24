@@ -1,5 +1,5 @@
 X skipped
-Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Llama/mmstar_intern-vl-8B_5.3_updated.json
+Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Choice/mmstar_intern-vl-8B_5.3_updated.json
 =====================================
 Overall Accuracy
 =====================================
@@ -19,7 +19,7 @@ logical reasoning:64.8%
 math:65.6%
 science & technology:48.4%
 X skipped
-Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Llama/mmstar_intern-vl-8B_5.3_updated.json
+Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Choice/mmstar_intern-vl-8B_5.3_updated.json
 =====================================
 Overall Accuracy
 =====================================

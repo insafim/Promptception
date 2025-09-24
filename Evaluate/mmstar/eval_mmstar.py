@@ -31,16 +31,9 @@ def extract_characters_regex(s, num_options):
     #     "The correct answer", "The correct option", "\nAnswer", "\nAnswer:",
     #     "$LETTER"
     # ]
-    
-    answer_prefixes = [
-        "The best answer is", "The correct answer is", "The answer is",
-        "The answer", "The best option is", "The correct option",
-        "Best answer:", "Best option:", "Answer:", "Option:",
-        "The correct answer", "The correct option", "\nAnswer", "\nAnswer:"
-    ]
 
-    for answer_prefix in answer_prefixes:
-        s = s.replace(answer_prefix, "")
+    # for answer_prefix in answer_prefixes:
+    #     s = s.replace(answer_prefix, "")
         
     # print(f"Answer after removing prefixes: {s}")
     
@@ -55,7 +48,10 @@ def extract_characters_regex(s, num_options):
 
     upper_limit = chr(65 + num_options - 1)
     lower_limit = chr(97 + num_options - 1)
-    pattern = rf"(?<![A-Za-z])([A-{upper_limit}])(?![A-Za-z])|\\(([a-{lower_limit}])\\)"
+    # pattern = rf"(?<![A-Za-z])([A-{upper_limit}])(?![A-Za-z])|\\(([a-{lower_limit}])\\)"
+    
+    # Define the pattern to match "Answer: LETTER" GPT4o:6.4
+    pattern = rf"Answer:\s*([A-Z])"
 
     matches = re.search(pattern, s)
     
@@ -73,7 +69,7 @@ def parse_options(options):
 def get_closest_match_letter(question, response, options, model="llama3.2"):
     choices_str = parse_options(options)
     
-    # # GPT4o
+    # # GPT-4o
     formatted_input = (
     f'''
     You are an AI assistant who will help me match an answer with several options in a single-choice question.
@@ -195,7 +191,7 @@ def eval_dataset(
 ):
     
     base_directory = os.path.dirname(results_path)
-    save_dir = os.path.join(base_directory, "Extract_Llama")
+    save_dir = os.path.join(base_directory, "Extract_Choice")
 
     with open(results_path, 'r') as f:
         data = json.load(f)
@@ -238,7 +234,7 @@ def eval_dataset(
 
         if ext_resp == "X":
             continue
-        
+
         category_dict[category]["answered"] += 1
         category_dict[category]["l2_categories"][l2_category]["answered"] += 1
         source_dict[source]["answered"] += 1
@@ -248,22 +244,22 @@ def eval_dataset(
             category_dict[category]["l2_categories"][l2_category]["correct"] += 1
             source_dict[source]["correct"] += 1
 
-    updated_dataset_path = os.path.join(save_dir, os.path.basename(results_path).replace('.json', '_updated_2.json'))
+    updated_dataset_path = os.path.join(save_dir, os.path.basename(results_path).replace('.json', '_updated_algo2.json'))
     with open(updated_dataset_path, 'w') as f:
         json.dump(data, f, indent=4)
 
-    # print("X skipped")
-    # print(f"Updated dataset saved to {updated_dataset_path}")
+    print("X skipped")
+    print(f"Updated dataset saved to {updated_dataset_path}")
     
-    # print("=====================================")
-    # print("Overall Accuracy")
-    # print("=====================================")
+    print("=====================================")
+    print("Overall Accuracy")
+    print("=====================================")
     total_correct = sum([v["correct"] for v in source_dict.values()])
     total_answered = sum([v["answered"] for v in source_dict.values()])
     overall_accuracy = (100 * total_correct / total_answered) if total_answered > 0 else 0
-    print(f"Overall:{overall_accuracy:.1f}% ({total_correct}/{total_answered})")
-    # print("=====================================")
-    # print(f"Overall:{overall_accuracy:.1f}%")
+    print(f"Overall: {overall_accuracy:.1f}% ({total_correct}/{total_answered})")
+    print("=====================================")
+    print(f"Overall:{overall_accuracy:.1f}%")
     
     # print("=====================================")
     # print("Source-wise Accuracy")
@@ -278,6 +274,9 @@ def eval_dataset(
             accuracy = (100 * correct / answered) if answered > 0 else 0
             print(f"{source}:{accuracy:.1f}%")
 
+    # print("=====================================")
+    # print("Category-wise Accuracy")
+    # print("=====================================")
     category_order = [
         "coarse perception", "fine-grained perception", "instance reasoning",
         "logical reasoning", "math", "science & technology"
@@ -293,7 +292,7 @@ if __name__ == "__main__":
     start_time = time.time()  # Start the timer
     
     parser = argparse.ArgumentParser()
-    parser.add_argument("--results_path", type=str, required=True , help="Path to the dataset JSON file.")
+    parser.add_argument("--results_path", type=str, default="/share/data/drive_4/insaf/Prompting/Results/MMStar/Llava-OV/mmstar_llava-ov_1.1_2.json", help="Path to the dataset JSON file.")
     parser.add_argument("--gt_answer_key", type=str, default="answer", help="Key for ground truth answers in the JSON file.")
     parser.add_argument("--your_answer_key", type=str, default="response", help="Key for predicted answers in the JSON file.")
     parser.add_argument("--model", type=str, choices=["llama3.2", "gpt4o-mini"], default="gpt4o-mini", help="Choose the model to use for answer matching.")
@@ -310,9 +309,9 @@ if __name__ == "__main__":
     )
     
     # Calculate and print the execution time
-    # end_time = time.time()
-    # elapsed_time = end_time - start_time
-    # minutes, seconds = divmod(int(elapsed_time), 60)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    minutes, seconds = divmod(int(elapsed_time), 60)
     # print(f"Execution Time: {minutes:02}:{seconds:02}")
     
 # CUDA_VISIBLE_DEVICES=7 python Evaluate/eval_mmstar.py --results_path Results/MMStar/Llava-OV/mmstar_llava-ov_1.1.json --model llama3.2
@@ -323,17 +322,7 @@ if __name__ == "__main__":
 
 
 
-# python Evaluate/eval_mmstar.py --results_path Results/MMStar/MMStar_Gemini1.5-Pro/mmstar_gemini1.5-pro_1.2.json | tee -a Eval_Output/MMStar/MMStar_Gemini1.5-Pro/eval_mmstar_gemini1.5-pro_1.2.txt
+# python Evaluate/eval_mmstar_GPT.py --results_path Results/MMStar/MMStar_Gemini1.5-Pro/mmstar_gemini1.5-pro_6.6.json | tee -a Eval_Output/MMStar/MMStar_Gemini1.5-Pro/eval_mmstar_gemini1.5-pro_6.6.txt
 
-# python Evaluate/eval_mmstar.py --results_path Results/MMStar/MMStar_GPT4o/mmstar_gpt4o_12.3.json | tee -a Eval_Output/MMStar/MMStar_GPT4o/eval_mmstar_gpt4o_12.3.txt
+# python Evaluate/eval_mmstar_GPT.py --results_path Results/MMStar/MMStar_GPT4o/mmstar_gpt4o_7.7.json | tee -a Eval_Output/MMStar/MMStar_GPT4o/eval_mmstar_gpt4o_7.7.txt
 
-# python Evaluate/eval_mmstar.py --results_path Results/MMStar/MMStar-Qwen2-VL-7B/MMStar-Qwen2-VL-7B/mmstar_qwen2-vl-7B_1.1.json | tee -a Eval_Output/MMStar/MMStar_Qwen2-VL-7B/eval_mmstar_qwen2-vl-7B_1.1.txt
-
-
-
-
-
-
-
-
-# python Evaluate/eval_mmstar.py --results_path Results/MMStar/MMStar_Llava-OV-7B/mmstar_llava-ov-7B_1.3.json | tee -a Eval_Output/MMStar/MMStar_Llava-OV-7B/eval_mmstar_llava-ov-7B_1.3.txt

@@ -24,15 +24,16 @@ client = OpenAI(api_key=api_key)
 
 def extract_characters_regex(s, num_options):
     s = s.strip()
-    answer_prefixes = [
-        "The best answer is", "The correct answer is", "The answer is",
-        "The answer", "The best option is", "The correct option",
-        "Best answer:", "Best option:", "Answer:", "Option:",
-        "The correct answer", "The correct option", "\nAnswer", "\nAnswer:"
-    ]
+    # answer_prefixes = [
+    #     "The best answer is", "The correct answer is", "The answer is",
+    #     "The answer", "The best option is", "The correct option",
+    #     "Best answer:", "Best option:", "Answer:", "Option:",
+    #     "The correct answer", "The correct option", "\nAnswer", "\nAnswer:",
+    #     "$LETTER"
+    # ]
 
-    for answer_prefix in answer_prefixes:
-        s = s.replace(answer_prefix, "")
+    # for answer_prefix in answer_prefixes:
+    #     s = s.replace(answer_prefix, "")
         
     # print(f"Answer after removing prefixes: {s}")
     
@@ -42,12 +43,15 @@ def extract_characters_regex(s, num_options):
     if s == "":
         return "X"
 
-    # if num_options < 2 or num_options > 26:
-    #     raise ValueError("Number of options should be between 2 and 26")
+    if num_options < 2 or num_options > 26:
+        raise ValueError("Number of options should be between 2 and 26")
 
     upper_limit = chr(65 + num_options - 1)
     lower_limit = chr(97 + num_options - 1)
-    pattern = rf"(?<![A-Za-z])([A-{upper_limit}])(?![A-Za-z])|\\(([a-{lower_limit}])\\)"
+    # pattern = rf"(?<![A-Za-z])([A-{upper_limit}])(?![A-Za-z])|\\(([a-{lower_limit}])\\)"
+    
+    # Define the pattern to match "Answer: LETTER" GPT4o:6.4
+    pattern = rf"Answer:\s*([A-Z])"
 
     matches = re.search(pattern, s)
     
@@ -65,7 +69,7 @@ def parse_options(options):
 def get_closest_match_letter(question, response, options, model="llama3.2"):
     choices_str = parse_options(options)
     
-    # # GPT4o
+    # GPT4o
     # formatted_input = (
     # f'''
     # You are an AI assistant who will help me match an answer with several options in a single-choice question.
@@ -201,31 +205,18 @@ def eval_dataset(
         #     print(f"Skipping item {item.get('id', 'unknown')} due to invalid number of options: {num_options}")
         #     continue
 
-        # if llm_only:
-        #     LLM_output = get_closest_match_letter(question, response, options, model=model)
-        #     item["LLM_resp"] = LLM_output
-        #     ext_resp = LLM_output
-        # else:
-        #     ext_resp = extract_characters_regex(response, len(options))
-        #     if ext_resp == "Y":
-        #         LLM_output = get_closest_match_letter(question, response, options, model=model)
-        #         item["LLM_resp"] = LLM_output
-        #         ext_resp = LLM_output
-        
-        # item["ext_resp"] = ext_resp
-        ext_resp = item.get("ext_resp")
-        if not ext_resp:
-            if llm_only:
+        if llm_only:
+            LLM_output = get_closest_match_letter(question, response, options, model=model)
+            item["LLM_resp"] = LLM_output
+            ext_resp = LLM_output
+        else:
+            ext_resp = extract_characters_regex(response, len(options))
+            if ext_resp == "Y":
                 LLM_output = get_closest_match_letter(question, response, options, model=model)
                 item["LLM_resp"] = LLM_output
                 ext_resp = LLM_output
-            else:
-                ext_resp = extract_characters_regex(response, len(options))
-                if ext_resp == "Y":
-                    LLM_output = get_closest_match_letter(question, response, options, model=model)
-                    item["LLM_resp"] = LLM_output
-                    ext_resp = LLM_output
-            item["ext_resp"] = ext_resp
+        
+        item["ext_resp"] = ext_resp
         if ext_resp == "X":
             continue
 
@@ -237,9 +228,9 @@ def eval_dataset(
             total_correct += 1
     
     base_directory = os.path.dirname(results_path)
-    save_dir = os.path.join(base_directory, "Extract_Llama")
+    save_dir = os.path.join(base_directory, "Extract_Choice")
     os.makedirs(save_dir, exist_ok=True)
-    updated_dataset_path = os.path.join(save_dir, os.path.basename(results_path).replace('.json', '_updated-100.json'))
+    updated_dataset_path = os.path.join(save_dir, os.path.basename(results_path).replace('.json', '_updated_GPT.json'))
     with open(updated_dataset_path, 'w') as f:
         json.dump(data, f, indent=4)
     # print(f"Updated dataset saved to {updated_dataset_path}")

@@ -1,5 +1,5 @@
 X skipped
-Updated dataset saved to Results/MMStar/MMStar_GPT4o/Extract_Llama/mmstar_gpt4o_15.2_rerun_updated_rerun.json
+Updated dataset saved to Results/MMStar/MMStar_GPT4o/Extract_Choice/mmstar_gpt4o_15.2_rerun_updated_rerun.json
 =====================================
 Overall Accuracy
 =====================================

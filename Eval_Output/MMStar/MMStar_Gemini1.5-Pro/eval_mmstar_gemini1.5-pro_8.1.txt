@@ -1,5 +1,5 @@
 X skipped
-Updated dataset saved to Results/MMStar/MMStar_Gemini1.5-Pro/Extract_Llama/mmstar_gemini1.5-pro_8.1_updated.json
+Updated dataset saved to Results/MMStar/MMStar_Gemini1.5-Pro/Extract_Choice/mmstar_gemini1.5-pro_8.1_updated.json
 =====================================
 Overall Accuracy
 =====================================
