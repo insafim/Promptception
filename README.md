@@ -121,9 +121,9 @@ bash Evaluate/mmmu-pro/eval_mmmu-pro_all.sh
 ```
 
 After running evaluation scripts, you’ll get two types of outputs:
-1.	Updated JSONs with extracted answers saved under `Results/<Dataset>/<Model>/Extract_Llama/*.json`
+1.	Updated JSONs with extracted answers saved under `Results/<Dataset>/<Model>/Extract_Choice/*.json`
 	```bash
-	Results/MMMU-Pro/MMMU-Pro_GPT4o/Extract_Llama/mmmu-pro_gpt4o_s4_1.1_updated.json
+	Results/MMMU-Pro/MMMU-Pro_GPT4o/Extract_Choice/mmmu-pro_gpt4o_s4_1.1_updated.json
 	```
 
 2. Accuracy reports (Overall + Per-Category) saved as .txt files under `Eval_Output/<Dataset>/<Model>/`
