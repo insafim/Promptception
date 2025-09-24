@@ -1,0 +1,21 @@
+Overall:53.9% (2154/4000)
+unexpected_action:74.0%
+action_sequence:67.0%
+episodic_reasoning:51.0%
+moving_direction:19.0%
+moving_count:48.0%
+action_localization:42.5%
+fine_grained_action:42.0%
+moving_attribute:65.5%
+object_existence:58.5%
+scene_transition:93.0%
+action_count:45.0%
+action_antonym:70.5%
+state_change:49.5%
+action_prediction:67.0%
+egocentric_navigation:35.5%
+counterfactual_inference:37.0%
+character_order:58.0%
+object_interaction:73.5%
+object_shuffle:34.0%
+fine_grained_pose:46.5%

@@ -1,0 +1,40 @@
+X skipped
+Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Llama/mmstar_intern-vl-8B_5.2_updated.json
+=====================================
+Overall Accuracy
+=====================================
+Overall: 61.7% (926/1500)
+=====================================
+Overall:61.7%
+SEEDBench_IMG:48.1%
+MMBench:78.4%
+MMMU:27.0%
+AI2D_TEST:60.2%
+ScienceQA_TEST:85.5%
+MathVista:67.0%
+coarse perception:69.6%
+fine-grained perception:52.0%
+instance reasoning:69.6%
+logical reasoning:64.4%
+math:66.8%
+science & technology:48.0%
+X skipped
+Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Llama/mmstar_intern-vl-8B_5.2_updated.json
+=====================================
+Overall Accuracy
+=====================================
+Overall: 61.7% (926/1500)
+=====================================
+Overall:61.7%
+SEEDBench_IMG:48.1%
+MMBench:78.4%
+MMMU:27.0%
+AI2D_TEST:60.2%
+ScienceQA_TEST:85.5%
+MathVista:67.0%
+coarse perception:69.6%
+fine-grained perception:52.0%
+instance reasoning:69.6%
+logical reasoning:64.4%
+math:66.8%
+science & technology:48.0%

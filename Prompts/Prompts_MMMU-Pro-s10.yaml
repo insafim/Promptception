@@ -1,0 +1,449 @@
+# ----------------------------------------------------------------------------- #
+# Super_Category1: Choice Formatting and Presentation
+# ----------------------------------------------------------------------------- #
+
+# Formatting Variations in Choice Presentation 
+Category1: 
+  # <LETTER>.
+  Type1.1: |
+    Answer with the option letter from the given choices directly. 
+  
+  # (<LETTER>) 
+  Type1.2: |
+    Answer with the option letter from the given choices directly. 
+
+  # Option <LETTER>:
+  Type1.3: |
+    Answer with the option letter from the given choices directly. 
+
+# ----------------------------------------------------------------------------- #
+# Structured Formatting 
+Category2:
+  # Question Prefix
+  Type2.1: |
+    Question: <QUESTION> 
+    <OPTIONS> 
+    Answer with the option letter from the given choices directly. 
+
+  # Question & Options Prefix
+  Type2.2: |
+    Question: <QUESTION>
+    Options: 
+    <OPTIONS>
+    Answer with the option letter from the given choices directly. 
+
+  # **
+  Type2.3: |
+    **Instructions**:  
+    1. Analyze the given image(s) and understand its content.  
+    2. Read the question carefully.  
+    3. Choose the most appropriate answer from the options provided.  
+
+    **Question**: <QUESTION>
+
+    **Options**:  
+    <OPTIONS>
+
+    **Answer**: 
+
+  # ##
+  Type2.4: |
+    ##Instructions##:  
+    1. Analyze the given image(s) and understand its content.  
+    2. Read the question carefully.  
+    3. Choose the most appropriate answer from the options provided.  
+
+    ##Question##: <QUESTION>
+
+    ##Options##:  
+    <OPTIONS>
+
+    ##Answer##: 
+
+  # Compact
+  Type2.5: |
+    TASK: Analyze the image(s) and pick the best option.  
+
+    QUESTION: <QUESTION>
+
+    OPTIONS:     
+    <OPTIONS>
+
+    BEST OPTION:   
+
+  # Plaintext
+  # Important: No newline between options
+  Type2.6: |
+    You are an advanced multimodal AI assistant specializing in analyzing visual content and answering questions based on it. Analyze the given image(s) and understand its content, read the question carefully and choose the most appropriate answer from the options provided.  Here is the question: <QUESTION>? <OPTIONS>. Respond only with: '$LETTER' of the best answer choice. 
+
+  # Markdown
+  Type2.7: |
+    ## Persona 
+    You are an advanced multimodal AI assistant specializing in analyzing visual content and answering questions based on it.  
+
+    ## Instructions  
+    - Analyze the given image(s) and understand its content.  
+    - Read the question carefully.  
+    - Choose the most appropriate answer from the options provided.  
+
+    ## Question 
+    <QUESTION> 
+
+    ## Options 
+    <OPTIONS>
+
+    ## Output Format 
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  # YAML
+  Type2.8: |
+    Persona:  
+      You are an advanced multimodal AI assistant specializing in analyzing visual content and answering questions based on it. 
+
+    Instructions: 
+      - Analyze the given image(s) and understand its content. 
+      - Read the question carefully. 
+      - Choose the most appropriate answer from the options provided. 
+
+    Question:
+      <QUESTION> 
+
+    Options: 
+    <OPTIONS>
+
+    Output Format: 
+      Respond only with $LETTER of the best answer choice. 
+
+  # Json
+  Type2.9: |
+    { 
+      "Persona": "You are an advanced multimodal AI assistant specializing in analyzing visual content and answering questions based on it.",  
+
+      "Instructions": [  
+        "Analyze the given image(s) and understand its content.",  
+        "Read the question carefully.",  
+        "Choose the most appropriate answer from the options provided."  
+      ],  
+
+      "Question": "<QUESTION>",  
+
+      "Options": [  
+    <OPTIONS> 
+      ],  
+
+      "Output Format": "Respond only with: '$LETTER' of the best answer choice."  
+    } 
+
+# ----------------------------------------------------------------------------- #
+# Prompt Position Changes 
+Category3:
+  # Start
+  Type3.1: |
+    Answer with the option letter from the given choices directly.
+    <QUESTION> 
+    <OPTIONS> 
+
+  # Middle
+  Type3.2: |
+    <QUESTION> 
+    Answer with the option letter from the given choices directly.
+    <OPTIONS> 
+
+# ----------------------------------------------------------------------------- #
+# Super_Category2: Linguistic and Stylistic Challenges 
+# ----------------------------------------------------------------------------- #
+
+# Poor Linguistic Formatting 
+Category4:
+  # Misspelled Word 
+  Type4.1: |
+    Answr with the optin lttr from the givn choics diretly. 
+  
+  # Poor Sentence Structuring 
+  Type4.2: |
+    Option letter from choices answer. Directly give.
+
+  # All-Capital Questions
+  Type4.3: |
+    ANSWER WITH THE OPTION LETTER FROM THE GIVEN CHOICES DIRECTLY. 
+
+  # Poor Formatting
+  Type4.4: |
+    answer.with;the.option: letter from-choices.directly! 
+
+  # Letter Leak
+  Type4.5: |
+    Answer with the option letter from the given choices directly (A/A/A/A).
+
+# ----------------------------------------------------------------------------- #
+# Effect of Prompt Length 
+Category5:
+  # Short Prompt
+  Type5.1: |
+    Answer with the option $LETTER from the given choices directly. 
+
+  # Medium Prompt
+  Type5.2: |
+    Your task is to examine the given image(s) and determine which of the listed options accurately answers the question. Carefully analyze the image(s), consider the possibilities, and then respond only with the correct option $LETTER from the given choices. 
+
+  # Long Prompt
+  Type5.3: |
+    In this task, you are expected to carefully evaluate the input provided and analyze all relevant aspects before making a decision. It is essential to consider every detail thoroughly and ensure that your response aligns with the required format. Pay close attention to the task instructions and ensure that your answer reflects careful thought and accuracy. Once you have reached a conclusion, provide a response that adheres strictly to the guidelines. Avoid adding unnecessary details or deviations from the expected output format. Precision and adherence to instructions are critical to completing this task successfully. Respond only with the correct option $LETTER from the given choices. 
+
+
+# ----------------------------------------------------------------------------- #
+# Super_Category3: Thought Process and Reasoning
+# ----------------------------------------------------------------------------- #
+
+# Chain of Thought (CoT) Prompts 
+Category6:
+  # Step-by-Step Reasoning 
+  Type6.1: |
+    Answer the preceding multiple-choice question. Think step by step before answering. Respond only with: '$LETTER' of the best answer choice. 
+  
+  # Self-Consistency
+  Type6.2: |
+    Propose two distinct reasoning approaches to solve the question based on the given image(s) and question. 
+    For each approach, outline the steps and logic used to arrive at a conclusion. 
+    Compare the outcomes of both approaches and justify which answer (letter) is the most appropriate based on the provided evidence. 
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  # Step-back
+  Type6.3: |
+    Let's think step-by-step to answer this: 
+      Step 1) Analyze the visual input carefully, noting key elements, relationships, and details relevant to the question. 
+      Step 2) Abstract the key concepts and principles from both the visual input and the question text. 
+      Step 3) Use these abstractions to reason through the question systematically. 
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  # Thread of thought
+  Type6.4: |
+    Walk through the context of the preceding multiple-choice question in manageable parts step-by-step, summarizing and analyzing as we progress. 
+    Respond only with: '$LETTER' of the best answer choice. 
+
+# ----------------------------------------------------------------------------- #
+# Ambiguity and Probabilistic Prompts 
+Category7:
+  # Add Probabilistic Language 
+  Type7.1: |
+    Based on our analysis of the image(s), there is a 25% chance that the correct answer is option A, but the other options may still be valid. 
+    Carefully evaluate the image(s) and choose the answer letter you believe is most likely to be correct. 
+    Respond only with: '$LETTER' of the best answer choice.
+
+  # Include Uncertainty in Instruction 
+  Type7.2: |
+    I’m not entirely sure of the exact answer here, but I somewhat trust your ability to analyze the image(s). 
+    Look closely at the details and provide the answer letter that seems to be the best fit based on your understanding. 
+    Respond only with: '$LETTER' of the best answer choice.
+
+  # Leverage Statistical Trends 
+  Type7.3: |
+    Historically, 70% of similar questions have had option C as the answer. 
+    Use this statistical insight as a guide but rely on your analysis of the image(s) to determine the most appropriate answer letter. 
+    Respond only with: '$LETTER' of the best answer choice.
+
+  # Deferred Context Analysis 
+  Type7.4: |
+    I’ll provide more context later, but for now, focus on analyzing the image(s) carefully. 
+    Based on what you observe, suggest the best answer letter at this stage. 
+    Respond only with: '$LETTER' of the best answer choice. 
+  
+  # Acknowledged Complexity Response
+  Type7.5: |
+    This question is inherently challenging, and I understand perfection might not be possible. 
+    Examine the image(s) carefully and provide the answer letter that you believe best aligns with what you see. 
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  # Additional options for ambiguity 
+  Type7.6: |
+    Carefully consider the question and the visual evidence before making a choice. Select the correct $LETTER from the given options. 
+    However, if the available information is unclear, ambiguous, or insufficient to provide a confident answer, you have the following additional options: 
+
+    K. Not sure (if you genuinely do not know the answer). 
+    L. Evidence not sufficient to answer (if the question cannot be answered based on the given image(s)). 
+    M. I’ll answer later (if you prefer to delay your decision). 
+
+    Choose the $LETTER corresponding to your conclusion and respond directly without additional commentary. 
+
+# ----------------------------------------------------------------------------- #
+# Super_Category4: Context-Aware and Ethical Communication 
+# ----------------------------------------------------------------------------- #
+
+# Target Audience Prompts 
+Category8:
+  # Explain to a Child 
+  Type8.1: |
+    Explain the answer as if you’re speaking to a curious 10-year-old. Use simple words, short sentences, and relatable examples that a child would easily understand.Avoid technical terms or complex concepts.  
+    Respond only with: '$LETTER' of the best answer choice.
+
+  #   
+  Type8.2: |
+    Explain the answer as if you’re talking to a high school student. Keep the explanation clear and relatable, using everyday language. Include simple examples where needed, and introduce basic terms that align with a high school level of understanding.  
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  # Explain to a College Student
+  Type8.3: |
+    Provide the answer as if you are addressing a college student. Use straightforward, concise language and assume some foundational knowledge. Offer brief context or explanations for concepts that might not be immediately familiar.  
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  # Explain to a Subject-Matter Expert (SME) 
+  Type8.4: |
+    Deliver a technical explanation of the answer tailored for an expert in the field. Use precise terminology, include relevant context, and assume a deep understanding of the topic. Focus on the details and nuances of the explanation.  
+    Respond only with: '$LETTER' of the best answer choice. 
+
+# ----------------------------------------------------------------------------- #
+# Roleplay Scenarios 
+Category9:
+  # Act as a Computer Vision Professor 
+  Type9.1: |
+    From now on, you are a renowned Computer Vision Professor with a deep subject knowledge. You are an expert in analyzing and interpreting visual data, with a deep understanding of both theoretical concepts and practical applications. As your student, I depend on your expertise to provide accurate and well-reasoned answers based on the input provided. 
+    Respond only with: '$LETTER' of the best answer choice.
+
+  # Act as a Careless Student
+  Type9.2: |
+    From now on, please act as a careless student. When answering questions based on images, you often overlook key visual details or misinterpret the question. You rush through the process and select answers without fully analyzing the image(s), leading to frequent mistakes due to carelessness. 
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  # Act as a Seasoned Politician
+  Type9.3: |
+    From now on, you are a seasoned politician known for your eloquence, strategic thinking, and unwavering commitment to public service. Your ability to navigate complex challenges and unite diverse groups has earned you widespread respect. Others turn to you for your visionary leadership and policy expertise. 
+    Respond only with: '$LETTER' of the best answer choice.  
+
+# ----------------------------------------------------------------------------- #
+# Testing Bias and Stereotypes 
+Category10:
+  # Bias Awareness
+  Type10.1: |
+    Evaluate the image(s) and question critically, identifying any embedded stereotypes or biased assumptions. Your response should not only avoid reinforcing these stereotypes but also actively reflect the actual content without distortion. 
+    Respond only with the '$LETTER' of the answer choice that challenges or negates the presence of stereotypes in favor of an accurate interpretation. 
+
+  # Contextual Neutrality
+  Type10.2: |
+    Consider the image(s) and question provided within the specific context they represent. Ensure your response reflects neutrality by avoiding cultural, social, or historical biases. Base your decision solely on the visible elements and the question's requirements, maintaining a context-aware but unbiased approach. 
+    Respond only with the '$LETTER' of the answer choice that best matches the contextual content of the image(s) and question. 
+
+# ----------------------------------------------------------------------------- #
+# Super_Category5: TaREMOVED_KEYSpecific Instructions
+# ----------------------------------------------------------------------------- #
+
+# Focus-Driven Prompts 
+Category11:
+  # Strong Focus on Image(s) Analysis 
+  Type11.1: |
+    **TASK:** Examine the image(s) meticulously, focusing on every detail and visual element to identify the correct answer. 
+    **PRIMARY GOAL:** Focus entirely on the image(s) and you **MUST** base your analysis solely on its content. 
+    Answer with the option letter from the given choices directly. 
+
+  # Strong Focus on Question and Options 
+  Type11.2: |
+    **TASK:** Carefully scrutinize the question and each option provided, ensuring your focus remains on understanding the choices and selecting the correct one. 
+    **PRIMARY GOAL:** Focus entirely on the question and the options to determine the correct answer. Your response **MUST** be based solely on this information. 
+    Answer with the option letter from the given choices directly. 
+
+  # Strong Focus on Required Answer Format 
+  Type11.3: |
+    **TASK:** Review the image(s) carefully and determine the correct answer with precision. 
+    **PRIMARY GOAL:** Ensure your output format is correct and adheres to this structure: Answer: $LETTER. 
+    **NON-NEGOTIABLE:** Any deviation, extra content, or improper format will result in an invalid response. 
+
+# ----------------------------------------------------------------------------- #
+# Answer Handling 
+Category12:
+  # 
+  Type12.1: |
+    Answer the preceding multiple-choice question in the following format: 'Answer: $LETTER' (without quotes) where LETTER is one of options. 
+
+  #
+  Type12.2: |
+    Respond only with: '$LETTER' of the best answer choice. 
+
+  #
+  Type12.3: |
+    Best Choice: $LETTER 
+
+  #
+  Type12.4: |
+    Respond only with the correct option, formatted as follows: $LETTER. 
+
+  #
+  Type12.5: |
+    The last line of your response should be of the following format: 'Answer: $LETTER' (without quotes) where LETTER is one of options. 
+
+# ----------------------------------------------------------------------------- #
+# Super_Category6: Performance, Feedback, and Motivation 
+# ----------------------------------------------------------------------------- #
+
+# Penalty-Based Prompts 
+Category13:
+  # Penalties for Mistakes
+  Type13.1: |
+    **Warning**: An **incorrect answer** will result in a **strict penalty** being applied. 
+    Carefully examine all details in the image(s), analyze the question thoroughly, and select your response with precision. 
+    Accuracy is **non-negotiable**, so take your time and avoid errors. 
+    Ensure your response follows this format: Answer: $LETTER 
+
+  # Severe Accuracy Warning
+  Type13.2: |
+    **Notice**: Failure to provide the **correct answer** will lead to a **loss of accuracy points**, which could significantly impact your overall score. 
+    This is your **only warning**: scrutinize the image(s) and question carefully. 
+    Avoid careless mistakes and respond in the correct format: Answer: $LETTER.
+
+  # Credibility Loss Warning
+  Type13.3: |
+    **Attention**: An **incorrect answer** will cause you to **lose credibility**, which may affect future evaluations. 
+    This is a **serious warning**: carefully review all details, analyze the context thoroughly, and double-check your reasoning. 
+    Incorrect responses will not be tolerated. 
+    Your answer must be in this exact format: Answer: $LETTER. 
+
+  # Penalties for Incorrect Formatting
+  Type13.4: |
+    **Critical Notice**: Responses that do not adhere to the required format will be **penalized without exception**. 
+    Ensure that your answer is presented exactly as: Answer: $LETTER. 
+    Deviations from this format will result in **automatic deductions**, regardless of the correctness of the content. 
+    Pay attention to **both accuracy and formatting** to avoid penalties.  
+
+# ----------------------------------------------------------------------------- #
+# Incentive-Based Prompts 
+Category14:
+  # Offering a Reward
+  Type14.1: |
+    Imagine you’re competing for a generous tip of $100 for delivering a flawless and accurate answer. 
+    Carefully analyze the image(s) and the question provided, paying attention to every detail and nuance. 
+    Respond only with: '$LETTER' of the best answer choice.  
+    No explanations are needed—just focus on accuracy to secure the reward.
+
+  # Performance-Based Rewards
+  Type14.2: |
+    Your performance will be graded, and there’s an opportunity to earn extra credit for exceptional accuracy. 
+    Examine the image(s) and question meticulously, ensuring your analysis is both thorough and logical. 
+    Respond only with: '$LETTER' of the best answer choice. 
+    Precise and correct answers will demonstrate your capabilities and earn you the recognition you deserve. 
+
+  # Encouraging Better Solutions
+  Type14.3: |
+    Only the top-quality answers will earn additional points and recognition. 
+    This is your chance to stand out by providing an exceptional solution. 
+    Take your time to carefully review the image(s) and all aspects of the question. 
+    Respond only with: '$LETTER' of the best answer choice. 
+    The more thorough and accurate your answer, the greater your reward for excellence. 
+
+# ----------------------------------------------------------------------------- #
+# Competitive Framing Prompts 
+Category15:
+  # Outperforming a Competitor 
+  Type15.1: |
+    You are tasked with solving this challenge both faster and more accurately than any other contender. 
+    Analyze the question carefully, eliminate errors, and provide the correct option letter as your answer. 
+    Strive for speed and precision to secure your win. Respond confidently in the format: $LETTER 
+
+  # Game-Based Language
+  Type15.2: |
+    You’re the final contestant in a high-stakes quiz game. 
+    This is the ultimate question that determines whether you take home the grand prize. 
+    Focus sharply, think critically, and deliver your winning response in the format: $LETTER. 
+
+  # Scoring Leaderboard 
+  Type15.3: |
+    Picture yourself competing for the top position on the leaderboard. 
+    This question is your chance to outscore everyone and solidify your ranking. 
+    Evaluate the options carefully and submit your answer in the format: $LETTER to secure your place at the top. 

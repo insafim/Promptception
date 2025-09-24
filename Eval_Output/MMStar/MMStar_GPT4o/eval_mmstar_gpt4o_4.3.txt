@@ -1,0 +1,20 @@
+X skipped
+Updated dataset saved to Results/MMStar/MMStar_GPT4o/Extract_Llama/mmstar_gpt4o_4.3_updated.json
+=====================================
+Overall Accuracy
+=====================================
+Overall: 53.9% (800/1484)
+=====================================
+Overall:53.9%
+SEEDBench_IMG:48.9%
+MMBench:79.3%
+MMMU:42.4%
+AI2D_TEST:38.3%
+ScienceQA_TEST:53.6%
+MathVista:45.4%
+coarse perception:70.8%
+fine-grained perception:46.3%
+instance reasoning:65.6%
+logical reasoning:57.0%
+math:46.8%
+science & technology:36.9%

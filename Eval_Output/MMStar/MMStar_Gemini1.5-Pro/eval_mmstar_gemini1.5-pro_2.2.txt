@@ -1,0 +1,20 @@
+X skipped
+Updated dataset saved to Results/MMStar/MMStar_Gemini1.5-Pro/Extract_Llama/mmstar_gemini1.5-pro_2.2_updated.json
+=====================================
+Overall Accuracy
+=====================================
+Overall: 55.0% (820/1491)
+=====================================
+Overall:55.0%
+SEEDBench_IMG:39.5%
+MMBench:78.6%
+MMMU:49.0%
+AI2D_TEST:38.3%
+ScienceQA_TEST:66.2%
+MathVista:58.1%
+coarse perception:67.5%
+fine-grained perception:42.4%
+instance reasoning:60.0%
+logical reasoning:55.6%
+math:62.8%
+science & technology:41.8%

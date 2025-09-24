@@ -1,0 +1,20 @@
+X skipped
+Updated dataset saved to Results/MMStar/MMStar_Intern-VL-8B/Extract_Llama/mmstar_intern-vl-8B_7.5_updated.json
+=====================================
+Overall Accuracy
+=====================================
+Overall: 62.3% (935/1500)
+=====================================
+Overall:62.3%
+SEEDBench_IMG:49.3%
+MMBench:79.5%
+MMMU:28.0%
+AI2D_TEST:59.7%
+ScienceQA_TEST:87.0%
+MathVista:66.7%
+coarse perception:70.0%
+fine-grained perception:54.4%
+instance reasoning:68.4%
+logical reasoning:64.8%
+math:66.8%
+science & technology:49.6%

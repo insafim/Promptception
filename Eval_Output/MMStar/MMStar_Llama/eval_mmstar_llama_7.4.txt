@@ -1,0 +1,13 @@
+Overall:46.8% (702/1500)
+SEEDBench_IMG:41.5%
+MMBench:69.7%
+MMMU:35.0%
+AI2D_TEST:38.3%
+ScienceQA_TEST:58.0%
+MathVista:35.1%
+coarse perception:64.4%
+fine-grained perception:43.2%
+instance reasoning:59.2%
+logical reasoning:45.2%
+math:36.0%
+science & technology:32.8%
