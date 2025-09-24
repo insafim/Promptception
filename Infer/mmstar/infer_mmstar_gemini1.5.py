@@ -14,7 +14,7 @@ import yaml
 from threading import Semaphore
 import google.generativeai as genai
 
-API_KEY = 'AIzaSyAOneAjMkfL4N558d2WDzVQU4jhTqlBDFA'
+API_KEY = '[YOUR_API_KEY_HERE]'
 WORKERS = 3
 
 # Configuration

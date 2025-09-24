@@ -28,7 +28,7 @@ else:
     CATEGORY = 'Category2'
     TYPE = 'Type2.2'
     
-API_KEY = 'AIzaSyAOneAjMkfL4N558d2WDzVQU4jhTqlBDFA'
+API_KEY = '[YOUR_API_KEY_HERE]'
 WORKERS = 5
 NUM = 1730
 

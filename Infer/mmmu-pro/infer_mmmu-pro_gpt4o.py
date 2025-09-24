@@ -58,7 +58,7 @@ OUTPUT_JSON_PATH = os.path.join(OUTPUT_DIRECTORY, OUTPUT_FILE)
 
 # Load API client
 MODEL = 'gpt-4o' # 'gpt-4o' 'gpt-4o-mini'
-API_KEY = 'REMOVED_KEYproj-kAHXuqcU_z-2jEyCRpapvtdA9gVBf-t6M1gISh4LSGWjnWOt7EjRky21XYgCH-dIBCO6C1SuDMT3BlbkFJ6-F8hLiEqJSpUE0GuDxY9smSDNTaoJoxYH9UZMF4dp-FhtRAyy9M0uV-LkvDkC3Lal5dbl6kUA'
+API_KEY = '[YOUR_API_KEY_HERE]'
 client = OpenAI(api_key=API_KEY)
 
 # Load prompt configuration

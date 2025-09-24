@@ -35,7 +35,7 @@ else:
     CATEGORY = 'Category1'
     TYPE = 'Type1.0'
     
-API_KEY = 'AIzaSyAOneAjMkfL4N558d2WDzVQU4jhTqlBDFA'
+API_KEY = '[YOUR_API_KEY_HERE]'
 WORKERS = 10
 
 MAX_NUM_FRAMES = 64

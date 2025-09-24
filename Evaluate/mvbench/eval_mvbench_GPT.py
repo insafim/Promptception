@@ -19,7 +19,7 @@ model_id = "meta-llama/Llama-3.2-3B-Instruct"
 # )
 pipe = None
 
-api_key = 'REMOVED_KEYproj-kAHXuqcU_z-2jEyCRpapvtdA9gVBf-t6M1gISh4LSGWjnWOt7EjRky21XYgCH-dIBCO6C1SuDMT3BlbkFJ6-F8hLiEqJSpUE0GuDxY9smSDNTaoJoxYH9UZMF4dp-FhtRAyy9M0uV-LkvDkC3Lal5dbl6kUA'
+api_key = '[YOUR_API_KEY_HERE]'
 client = OpenAI(api_key=api_key)
 
 def extract_characters_regex(s, num_options):
