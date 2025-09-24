@@ -102,6 +102,35 @@ cd Promptception
                 google-generativeai
     ```
 
+## 🔮 Inference
+To run inference on a specific dataset/model:
+```bash
+# Example: Inference on MMMU-Pro with GPT-4o
+bash Infer/mmmu-pro/infer_mmmu-pro_gpt4o.sh
+```
+Raw outputs will be saved in:
+```bash
+Results/<Dataset>/<Model>/*.json
+```
+
+## 📊 Evaluation
+To evaluate the inference results:
+```bash
+# Example: Evaluation on MMMU-Pro results
+bash Evaluate/mmmu-pro/eval_mmmu-pro_all.sh
+```
+
+After running evaluation scripts, you’ll get two types of outputs:
+	1.	Updated JSONs with extracted answers saved under 'Results/<Dataset>/<Model>/Extract_Llama/*.json'
+        ```bash
+        Results/MMMU-Pro/MMMU-Pro_GPT4o/Extract_Llama/mmmu-pro_gpt4o_s4_1.1_updated.json
+        ```
+
+    2. Accuracy reports (Overall + Per-Category) saved as .txt files under 'Eval_Output/<Dataset>/<Model>/'
+        ```bash
+        Eval_Output/MMMU-Pro/s4/MMMU-Pro_Gemini1.5/eval_mmmu-pro_gpt4o_s4_1.1.txt
+        ```
+
 ## Citation 📜
 If you are using Promptception in your research or applications, please cite using this BibTeX:
 ```bibtex
