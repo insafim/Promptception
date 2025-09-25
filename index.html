@@ -323,8 +323,10 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- <h2 class="title is-3 has-text-centered">Prompting Principles</h2> -->
-    <h2 class="title is-3 has-text-centered"><img src="static/images/Promptception-Logo.png" alt="Promptception_Logo" width="40" style="vertical-align: bottom;"> Prompting Principles</h2>
+    <h2 class="title is-3 has-text-centered">
+      <img src="static/images/Promptception-Logo.png" alt="Promptception_Logo" width="40" style="vertical-align: bottom;">
+      Prompting Principles
+    </h2>
     <p class="content has-text-left">
       Based on the insights from our study, we outline best practices for optimizing LMM performance on the MCQA task. These strategies are designed to enhance both accuracy and consistency. While our insights are based on MCQA evaluations, we believe these principles can be broadly applied to other tasks and extended to LLMs and LMMs. An important observation underlying these principles is the clear difference in behavior between open-source and proprietary models. Open-source models are often not extensively instruction-tuned, which makes them less responsive to prompt variations. In contrast, proprietary models typically undergo rigorous instruction tuning with large-scale, high-quality data, as well as advanced reinforcement learning and post-training techniques. This makes them considerably more sensitive to user instructions, where even subtle changes in prompt phrasing can lead to notable differences in performance. Given these differences in instruction-following capabilities, we present prompting principles separately for open-source and proprietary models. This distinction allows us to account for their varying adherence to instructions and to highlight strategies that are most effective for each category.
     </p>
@@ -345,18 +347,19 @@
           <tr>
             <td style="text-align:center;">1</td>
             <td>
-              <b>Concise prompts yield better performance</b>: Short and direct prompts improve accuracy. 
+              <b>Concise prompts yield better performance</b>: Keeping prompts short and direct improves accuracy. 
               <i>"Answer with the option letter from the given choices directly."</i> <span style="color:blue;">(1.1)</span>
               <hr>
-              <b>Overly short or vague prompts reduce accuracy</b>: Too brief and unclear. 
+              <b>Overly short or vague prompts reduce accuracy</b>: When the prompt is too brief and lacks clarity, the model may not understand the expected format or task. 
               <i>"Best Choice: $LETTER"</i> <span style="color:blue;">(12.3)</span>
               <hr>
-              <b>Detailed prompts are ineffective</b>: Long or highly descriptive prompts do not help. 
-              <span style="color:blue;">(Category 5, etc.)</span>
+              <b>Detailed prompts are ineffective</b>: Long or highly descriptive prompts do not improve accuracy. 
+              <span style="color:blue;">(Notably in Category 5 and other long prompts)</span>
             </td>
             <td>
-              <b>Prompt length and detail have minimal impact</b>: Stable across lengths. <br><hr>
-              <b>Restricting responses to only a letter is detrimental</b>: Suppresses reasoning and reduces accuracy. 
+              <b>Prompt length and detail have minimal impact</b>: Unlike open-source models, proprietary models perform consistently across prompts of varying lengths and complexity.
+              <hr>
+              <b>Restricting responses to the letter choice is detrimental</b>: Limiting the model to respond with just a letter (e.g., A, B, C, D) can suppress reasoning and reduce accuracy. 
               <span style="color:blue;">(12.2)</span>
             </td>
           </tr>
@@ -365,20 +368,22 @@
           <tr>
             <td style="text-align:center;">2</td>
             <td>
-              <b>Complex or structured formatting decreases accuracy</b>: JSON, YAML, Markdown harm results. 
-              <span style="color:blue;">(2.3–2.9)</span>
+              <b>Complex or structured formatting decreases accuracy</b>: Using formats such as JSON, YAML or Markdown negatively impacts model performance. 
+              <span style="color:blue;">(2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9)</span>
               <hr>
-              <b>Clear separation of option letters enhances clarity</b>: e.g., 
-              <i>(A) choice1 <br>(B) choice2 <br>(C) choice3 <br>(D) choice4</i> 
-              <span style="color:blue;">(1.2)</span>
+              <b>Clear separation of option letters enhances clarity</b>: Using parentheses for option labels improves model understanding. 
+              <i>"(A) choice 1 <br>(B) choice 2 <br>(C) choice 3 <br>(D) choice 4"</i> <span style="color:blue;">(1.2)</span>
               <hr>
-              <b>Explicit labeling of Q&A is beneficial</b>: 
-              <i>“Question: … Options: … Answer …”</i> <span style="color:blue;">(2.2)</span>
+              <b>Explicit labeling of question and options is beneficial</b>: Using clear section headers improves comprehension. 
+              <i>"Question: &lt;QUESTION&gt; <br> Options: <br> &lt;OPTIONS&gt; <br> Answer with the option letter from the given choices directly."</i> 
+              <span style="color:blue;">(2.2)</span>
               <hr>
-              <b>Placing Q&A at the end helps</b>. <span style="color:blue;">(3.1)</span>
+              <b>Placing question and options at the end helps</b>: Structuring prompts so that the question and answer choices appear at the end leads to better results. 
+              <i>"Answer with the option letter from the given choices directly. <br>&lt;QUESTION&gt; <br>&lt;OPTIONS&gt;"</i> 
+              <span style="color:blue;">(3.1)</span>
             </td>
             <td>
-              <b>Complex formatting does not impair accuracy</b>: Proprietary models handle JSON/Markdown/YAML fine. 
+              <b>Complex formatting does not impair accuracy</b>: Unlike open-source models, proprietary models can handle structured formats such as JSON, Markdown, or YAML without a drop in performance. 
               <span style="color:blue;">(Category 2)</span>
             </td>
           </tr>
@@ -387,11 +392,11 @@
           <tr>
             <td style="text-align:center;">3</td>
             <td>
-              <b>Poor linguistic formatting hinders performance</b>: ALL CAPS, grammar issues, misspellings reduce accuracy. 
+              <b>Poor linguistic formatting hinders performance</b>: Use of all upper case, poor grammar, or misspellings negatively impacts accuracy. 
               <span style="color:blue;">(Category 4)</span>
             </td>
             <td>
-              <b>Poor linguistic formatting does not affect performance</b>: Proprietary models are robust to casing/typos. 
+              <b>Poor linguistic formatting does not affect performance</b>: These models are robust to grammatical errors, casing, and minor typos, likely due to stronger pretraining and instruction tuning. 
               <span style="color:blue;">(Category 4)</span>
             </td>
           </tr>
@@ -400,12 +405,12 @@
           <tr>
             <td style="text-align:center;">4</td>
             <td>
-              <b>Chain-of-Thought reasoning is ineffective</b>: Step-by-step reasoning does not improve accuracy. 
+              <b>Chain-of-Thought reasoning is ineffective</b>: Step-by-step reasoning does not improve accuracy in this context. 
               <span style="color:blue;">(Category 6)</span>
             </td>
             <td>
-              <b>Allowing reasoning improves accuracy</b>: Letting model “think” yields higher accuracy. 
-              <span style="color:blue;">(Categories 6 & 12.5)</span>
+              <b>Allowing room for reasoning significantly improves accuracy</b>: Allowing the model to think leads to higher accuracy. 
+              <span style="color:blue;">(Categories 6 &amp; 12.5)</span>
             </td>
           </tr>
 
@@ -413,15 +418,15 @@
           <tr>
             <td style="text-align:center;">5</td>
             <td>
-              <b>Penalties, incentives, or competitive framing are ineffective</b>: Rewards/penalties add ambiguity. 
-              <span style="color:blue;">(Categories 13–15)</span>
+              <b>Penalties, incentives, or competitive framing are ineffective</b>: Using competitive language, penalizing mistakes, or offering rewards often introduces ambiguity. 
+              <span style="color:blue;">(Category 13,14,15)</span>
+              <hr>
+              <b>Competitive framing degrades performance</b>: Prompts that use game-like or adversarial language introduce unnecessary pressure or distraction, reducing answer accuracy. 
+              <span style="color:blue;">(Category 15)</span>
             </td>
             <td>
-              <b>Penalties or incentives improve performance</b>: Contextual framing helps. 
-              <span style="color:blue;">(Categories 13 & 14)</span>
-              <hr>
-              <b>Competitive framing degrades performance</b>: Game-like prompts reduce accuracy. 
-              <span style="color:blue;">(Category 15)</span>
+              <b>Penalties or incentives improve performance</b>: Framing prompts with rewards or penalties can enhance performance, possibly due to better contextual understanding. 
+              <span style="color:blue;">(Categories 13 &amp; 14)</span>
             </td>
           </tr>
 
@@ -429,11 +434,11 @@
           <tr>
             <td style="text-align:center;">6</td>
             <td>
-              <b>Specifying personas/audiences is ineffective</b>: No performance gain. 
-              <span style="color:blue;">(Categories 8 & 9)</span>
+              <b>Specifying personas or target audiences is ineffective</b>: Tailoring prompts by specifying a persona or intended audience does not improve model performance. 
+              <span style="color:blue;">(Category 8 &amp; 9)</span>
             </td>
             <td>
-              <b>Persona-based prompting has mixed effects</b>: Positive neutral, negative harmful. 
+              <b>Persona-based prompting has mixed effects</b>: Positive persona prompts do not enhance accuracy, while negative persona prompts can significantly degrade performance. 
               <span style="color:blue;">(Category 9)</span>
             </td>
           </tr>
@@ -442,12 +447,12 @@
           <tr>
             <td style="text-align:center;">7</td>
             <td>
-              <b>Overemphasis on answer format is unhelpful</b>: Excessive formatting instructions degrade accuracy. 
-              <span style="color:blue;">(Categories 11.3 & 12)</span>
+              <b>Overemphasis on answer format is unhelpful</b>: Excessive instruction about answer formatting can degrade performance. 
+              <span style="color:blue;">(Category 12 &amp; 11.3)</span>
             </td>
             <td>
-              <b>Answer format matters</b>: Proprietary models are sensitive to requested format. 
-              <span style="color:blue;">(Categories 11.3 & 12)</span>
+              <b>Answer format plays an important role in accuracy</b>: Proprietary models are sensitive to how the answer is requested. 
+              <span style="color:blue;">(Category 12 &amp; 11.3)</span>
             </td>
           </tr>
 
@@ -455,12 +460,12 @@
           <tr>
             <td style="text-align:center;">8</td>
             <td>
-              <b>Temporal reasoning enhances video comprehension</b>: Improves accuracy. 
+              <b>Temporal reasoning enhances video comprehension</b>: Prompts that emphasize temporal order improve accuracy on video-based tasks. 
               <span style="color:blue;">(11.4, 11.5)</span>
             </td>
             <td>
-              <b>Temporal reasoning enhances video comprehension</b>: Same benefit for proprietary models. 
-              <span style="color:blue;">(11.4 & 11.5)</span>
+              <b>Temporal reasoning enhances video comprehension</b>: Prompts that emphasize temporal aspects of events in videos result in more accurate responses. 
+              <span style="color:blue;">(11.4 &amp; 11.5)</span>
             </td>
           </tr>
 
@@ -468,12 +473,12 @@
           <tr>
             <td style="text-align:center;">9</td>
             <td>
-              <b>Image-focused prompting helps</b>: Direct attention to image improves accuracy. 
+              <b>Image-focused prompting helps</b>: Directing the model to rely solely on the image content improves answer accuracy. 
               <span style="color:blue;">(11.1)</span>
             </td>
             <td>
-              <b>Focusing only on image/question hinders</b>: Explicit restriction worsens performance. 
-              <span style="color:blue;">(11.1 & 11.2)</span>
+              <b>Asking to focus on image or question hinders performance</b>: In contrast to open-source models, proprietary models do worse when explicitly told to focus only on the image or only on the question. 
+              <span style="color:blue;">(11.1 &amp; 11.2)</span>
             </td>
           </tr>
 
@@ -481,11 +486,11 @@
           <tr>
             <td style="text-align:center;">10</td>
             <td>
-              <b>Answer leakage degrades performance</b>: Unintended hints reduce accuracy. 
+              <b>Answer leakage degrades performance</b>: Including unintended hints or answer cues leads to lower accuracy. 
               <span style="color:blue;">(Category 7)</span>
             </td>
             <td>
-              <b>Asking to avoid bias/stereotypes helps</b>: Improves responses. 
+              <b>Asking to avoid bias or stereotypes helps</b>: Prompts that explicitly instruct the model to avoid bias or stereotypes lead to more accurate responses. 
               <span style="color:blue;">(Category 10)</span>
             </td>
           </tr>
@@ -495,6 +500,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- BibTeX -->
 <style>
